@@ -1,3 +1,6 @@
+# qr-code-frontend
+this is a qrcode application ! Scan your url , images , files and more etc ...
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
