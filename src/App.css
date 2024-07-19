@@ -104,6 +104,7 @@ body {
   
   body {
     --btn-primary:#00bfff;
+    --dark-blue:#53678C;
     font-family: var(--font-family-sans-serif);
     font-weight: 400;
     line-height: 1.75;
@@ -150,6 +151,9 @@ body {
     height: 35px;
     width: 35px;
   }
+  .chevron:hover{
+    cursor: pointer;
+     }
   .App-header ul{
     margin: 0 auto;
     padding: 1rem;
@@ -179,5 +183,63 @@ body {
     text-decoration: none;
     text-align: center;
 
+  }
+}
+
+@layer detailed-menu{
+  .detailed-menu{
+    color: var(--wp--preset--color--black);
+    display: none ;
+  }
+  
+  .detailed-menu li:first-child p{
+    display: flex;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: start;
+    margin: 0;
+    padding: 0;
+    color: var(--btn-primary);
+   
+  }
+  .detailed-menu .headerSpanTitle{
+    font-size: var(--h5);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--dark-blue);
+    margin: 0 auto;
+  }
+  .detailed-menu li:first-child p .headerSpan{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .detailed-menu li:first-child span:first-child{
+   font-size: 0.9rem;
+  }
+  .detailed-menu ul li:last-child{
+    text-align: left;
+    padding-left: 2rem!important;
+  
+  }
+  .detailed-menu ul li:last-child:hover{
+    background: #E1E1E1;
+    border-bottom: 2px solid var(--btn-primary);
+  }
+  .detailed-menu ul.ListDesc  li.ElementDescriptor:not(:last-child){
+    display: block !important;
+  }
+  .ElementDescriptor p{
+    margin: 0;
+    padding: 0;
+  }
+  .ElementDescriptor p:nth-of-type(1){
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .ElementDescriptor p:nth-of-type(2){
+    font-size: 0.8rem;
   }
 }
