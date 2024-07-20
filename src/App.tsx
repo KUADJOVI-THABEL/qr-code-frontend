@@ -4,10 +4,13 @@
 
 import './App.css';
 import closeIcon from './close.svg';
-import { BackChevronSVG, SVGComponent } from './svg';
+import { BackChevronSVG } from './svg';
 // import styled from 'styled-components';
 
+
+
 /** svgs importations as Component */
+import { ReactComponent as SVGComponent } from './svgicons/brand.svg';
 import { ReactComponent as BarCode } from './svgicons/barcode-svgrepo-com.svg';
 import { ReactComponent as BitCoin } from './svgicons/bitcoin-circle-svgrepo-com.svg';
 import { ReactComponent as Email } from './svgicons/email-svgrepo-com.svg';
@@ -340,7 +343,7 @@ const App: FC = () => {
           <ul>
             <li>
               <a href="/">
-                <SVGComponent></SVGComponent>
+                <SVGComponent className='logo-svg'></SVGComponent>
               </a>
             </li>
             <li>

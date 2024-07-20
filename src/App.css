@@ -150,6 +150,8 @@ body {
   .close-icon{
     height: 35px;
     width: 35px;
+    fill: var(--btn-primary);
+   
   }
   .chevron:hover{
     cursor: pointer;
@@ -160,6 +162,7 @@ body {
     list-style-type: none;
     display: flex;
     align-items: center;
+    flex-flow: row wrap;
     justify-content: space-between;
   }
   .App-header ul li{
@@ -241,5 +244,15 @@ body {
   }
   .ElementDescriptor p:nth-of-type(2){
     font-size: 0.8rem;
+  }
+}
+
+@layer svgs{
+  .svgs svg{
+    height: 100px;
+    width: 100px;
+  }
+  .svgs .svg:hover{
+    cursor: pointer;
   }
 }
