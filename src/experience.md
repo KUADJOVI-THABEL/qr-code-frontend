@@ -1,3 +1,4 @@
+## What I learned
 * il faut trouver un moyen de palcer les 
 fichiers images et svg
 
@@ -20,9 +21,15 @@ réside dans la définition claire de ce que je voulais
 Sans passer par la création suplémentaires des components.
 Il s'agit d'importer les svgs comme étant des component react
 
+* On peut changer les propriétes du path d'un svg
+
 
 ## thinks to work on
 * add the fivecon
+* above 303 px the design looks terrible maybe add another max-width or
+think of a smooth design there.
+* change Icons fill color on clicked to means it's choosen
+
 
 
 ## Defining Cleary 
@@ -46,6 +53,24 @@ Ya the other style is comming from a class named sto in the actual css
 right embedded into the svg itself , so i deleted this class and style it my self.
 
 The only property used so far is fill: var(--btn-primary)
+
+on clik an icon-text 
+signal it to the user it's cliked by changing the fill color
+of the icon
+
+In order to achieve this i want to manipulate the icon strocke with
+make it by default to 1.
+
+It seems like may be i need to think about other properties than the stroke.
+
+then displaying the according forms  above the svgs div named
+selected form
+
+My approch is to design a set off forms for each icons 
+and renther a specif in a function call
+
+I will need to add a state tracker , use state of a variable
+wish will update the selected Form
 
 ### thinks to learn
 * Learn about the ref in React

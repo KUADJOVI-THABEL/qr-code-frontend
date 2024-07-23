@@ -82,6 +82,15 @@ body {
 
 }
 
+@layer reflexions{
+
+  /* Reflexions 
+  * first breakpoint is 574px
+  * second breakpoint is 768px
+  * third breakpoint is 992px
+  */
+}
+
 @layer base{
  
   html {
@@ -105,6 +114,8 @@ body {
   body {
     --btn-primary:#00bfff;
     --dark-blue:#53678C;
+    --gray:#EAEAEA;
+    --gray-dark:#B0B0B0;
     font-family: var(--font-family-sans-serif);
     font-weight: 400;
     line-height: 1.75;
@@ -248,11 +259,58 @@ body {
 }
 
 @layer svgs{
+  main{
+    border: 2px solid var(--gray-dark);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  .svgs{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
   .svgs svg{
-    height: 100px;
-    width: 100px;
+    height: 18px;
+    width: 18px;
+    /* stroke-width: 10; */
+    fill-opacity: 0.5;
+  
+  }
+  .svgs svg path{
+    stroke-width: 1;
+    /* stroke-width:0; */
+    fill-opacity: 0.5;
   }
   .svgs .svg:hover{
     cursor: pointer;
+  }
+  .svgs span{
+    color: var(--dark);
+  }
+  .icon-text{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    border-bottom: 2px solid var(--gray);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-weight: 600;
+  }
+  .icon-text:hover,
+  .icon-text.active{
+    background: var(--gray);
+    border-color: var(--gray-dark);
+  }
+  
+  .icon-text:hover svg,
+  .icon-text.active svg{
+    fill-opacity: 1;
+  }
+   
+  .icon-text:hover svg path,
+  .icon-text.active svg path{
+    fill-opacity: 1;
   }
 }

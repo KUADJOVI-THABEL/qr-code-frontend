@@ -15,17 +15,16 @@ import { ReactComponent as BarCode } from './svgicons/barcode-svgrepo-com.svg';
 import { ReactComponent as BitCoin } from './svgicons/bitcoin-circle-svgrepo-com.svg';
 import { ReactComponent as Email } from './svgicons/email-svgrepo-com.svg';
 import { ReactComponent as Facebook } from './svgicons/facebook-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/file-files-and-folders-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/file-minus-alt-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/id-card-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/images-967-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/logo-apple-appstore-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/mp3-file-type-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/pdf-document-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/sms-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/twitter-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/wifi-good-svgrepo-com.svg';
-// import { ReactComponent as Chevron } from './svgicons/www-presentation-svgrepo-com.svg';
+import { ReactComponent as File } from './svgicons/file-minus-alt-svgrepo-com.svg';
+import { ReactComponent as Card } from './svgicons/id-card-svgrepo-com.svg';
+import { ReactComponent as ImageIcon } from './svgicons/images-967-svgrepo-com.svg';
+import { ReactComponent as AppIcon } from './svgicons/logo-apple-appstore-svgrepo-com.svg';
+import { ReactComponent as Mp3 } from './svgicons/mp3-file-type-svgrepo-com.svg';
+import { ReactComponent as Pdf } from './svgicons/pdf-document-svgrepo-com.svg';
+import { ReactComponent as Sms } from './svgicons/sms-svgrepo-com.svg';
+import { ReactComponent as Twitter } from './svgicons/twitter-svgrepo-com.svg';
+import { ReactComponent as Www } from './svgicons/www-presentation-svgrepo-com.svg';
+import { ReactComponent as Wifi } from './svgicons/wifi-good-svgrepo-com.svg';
 
 import React, { useState, useRef, FC, Dispatch, SetStateAction, useEffect, RefObject, Fragment } from 'react';
 import ReactDOM from 'react-dom';
@@ -139,14 +138,14 @@ const StyledMenu = styled.nav<MenuProps>`
  
 `;
 
-const DetailedMenu: FC<MenuProps> = ({ open, detailedMenuBoolean,setDetailedMenuBoolean }) => {
+const DetailedMenu: FC<MenuProps> = ({ open, detailedMenuBoolean, setDetailedMenuBoolean }) => {
   console.log('Detaled menu is rendered ');
   return (
     <StyledMenu open={open} className='detailed-menu' detailedMenuBoolean={detailedMenuBoolean} >
       <ul className='ListDesc'>
         <li className='ElementDescriptor  '>
           <p>
-            <span className='headerSpan' onClick={()=>{ if(setDetailedMenuBoolean) setDetailedMenuBoolean(false)}}>
+            <span className='headerSpan' onClick={() => { if (setDetailedMenuBoolean) setDetailedMenuBoolean(false) }}>
               <BackChevronSVG></BackChevronSVG>
               <p>back</p>
             </span>
@@ -173,9 +172,9 @@ const DetailedMenu: FC<MenuProps> = ({ open, detailedMenuBoolean,setDetailedMenu
 const Menu: FC<MenuProps> = ({ open, setDetailedMenuBoolean, detailedMenuBoolean }) => {
   const handleClick = () => {
     console.log('click');
-    if (setDetailedMenuBoolean) 
-       // if false
-        setDetailedMenuBoolean(true);
+    if (setDetailedMenuBoolean)
+      // if false
+      setDetailedMenuBoolean(true);
   }
   return (
     <StyledMenu open={open}>
@@ -260,7 +259,7 @@ const Burger: FC<BurgerProps> = ({ open, setOpen }) => {
   function handleClick() {
     if (setOpen)
       setOpen(!open);
-      
+
   }
   return (
     <>
@@ -321,21 +320,87 @@ const useOnClickOutside = (ref: RefObject<HTMLDivElement>, handler: (event: Mous
 //   );
 // }
 
+function UrlForm() {
+
+  return (
+    <div>
+      <form>
+        <input type='text' placeholder='url'></input>
+        <button>Generate</button>
+      </form>
+    </div>
+  );
+}
+function TextForm() {
+  return (
+    <div>
+      <form>
+        <textarea placeholder='text'></textarea>
+        <button>Generate</button>
+      </form>
+    </div>
+  );
+}
 const App: FC = () => {
   const [open, setOpen] = useState(false);
   const [detailedMenuBoolean, setDetailedMenuBoolean] = useState(false);
-
+  const [icontype, setIconType] = useState('url');
   const node = useRef<HTMLDivElement>(null);
   const nodeForDetailedMenu = useRef<HTMLDivElement>(null);
   /* my approch is to set a ref for each 
 
 
   */
-  useOnClickOutside(node, () => {if(!detailedMenuBoolean) setOpen(false)});
+  useOnClickOutside(node, () => { if (!detailedMenuBoolean) setOpen(false) });
   useOnClickOutside(nodeForDetailedMenu, () => { setDetailedMenuBoolean(false); setOpen(false) });
-  const icons = [
-    
-  ]
+  const icons: { [index: string]: JSX.Element } = {
+    'WWW': UrlForm(),
+    'Text': TextForm(),
+  }
+  const indexIcons: { [index: number]: string } = {
+    1: 'Barcode',
+    2: 'Bitcoin',
+    3: 'Email',
+    4: 'Facebook',
+    5: 'Text',
+    6: 'V-Card',
+    7: 'Image',
+    8: 'App Stores',
+    9: 'Mp3',
+    10: 'Pdf',
+    11: 'SMS',
+    12: 'Twitter',
+    13: 'WWW',
+    14: 'Wifi',
+  }
+  const iconsKeys = Object.keys(icons);
+  function ColorateIcon(index: number) {
+    console.log('ColorateIcon');
+    return () => {
+      removeActiveClass();
+      console.log('ColorateIcon 2');
+      console.log('index', index);
+      // icons[index].style.color = 
+      const div_icon_text = document.getElementsByClassName('icon-text')[index-1] as HTMLElement;
+      const iconChoosed = indexIcons[index];
+      setIconType(iconChoosed);
+      if (!div_icon_text)
+        return
+      div_icon_text.classList.add('active');
+      console.log('div_icon_text', div_icon_text);
+    }
+  } // to be implemented
+
+  // remove active class from all elements
+  // add active class to the clicked
+  function removeActiveClass() {
+    const elements = document.getElementsByClassName('icon-text');
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i] as HTMLElement;
+      element.classList.remove('active');
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -358,11 +423,70 @@ const App: FC = () => {
         </nav>
       </header>
       <main >
+
         <div className="svgs">
-          <BarCode />
-          <BitCoin />
-          <Email />
-          <Facebook />
+          <div className='icon-text' onClick={ColorateIcon(1)}>
+            <BarCode />
+            <span>Barcode</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(2)}>
+            <BitCoin />
+            <span>Bitcoin</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(3)}>
+            <Email />
+            <span>Email</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(4)}>
+            <Facebook />
+            <span>Facebook</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(5)}>
+            <File />
+            <span>Text</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(6)}>
+            <Card />
+            <span>V-Card</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(7)}>
+            <ImageIcon />
+            <span>Image</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(8)}>
+            <AppIcon />
+            <span>App Stores</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(9)}>
+            <Mp3 />
+            <span>Mp3</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(10)}>
+            <Pdf />
+            <span>Pdf</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(11)}>
+            <Sms />
+            <span>SMS</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(12)}>
+            <Twitter />
+            <span>Twitter</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(13)}>
+            <Www />
+            <span>WWW</span>
+          </div>
+          <div className='icon-text'  onClick={ColorateIcon(14)}>
+            <Wifi />
+            <span>Wifi</span>
+          </div>
+
+        </div>
+        <div>
+          {
+            iconsKeys.includes(icontype) && icons[icontype]
+          }
         </div>
       </main>
     </div>
