@@ -1,3 +1,20 @@
+
+@font-face {
+  font-family: "source-sans-pro-bold";
+  src: url("source-sans-pro/SourceSansPro-Bold.ttf"),
+  
+}
+@font-face {
+  font-family: "source-sans-pro-semi-bold";
+  src:
+  url("source-sans-pro/SourceSansPro-Semibold.ttf");
+}
+
+@font-face {
+  font-family: "source-sans-pro-regular";
+  src: url("source-sans-pro/SourceSansPro-Regular.ttf"),
+}
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -112,11 +129,13 @@ body {
   
   
   body {
+    --green-color:#90c52d;
     --btn-primary:#00bfff;
     --dark-blue:#53678C;
     --gray:#EAEAEA;
     --gray-dark:#B0B0B0;
-    font-family: var(--font-family-sans-serif);
+    --source-sans-pro-regular:"source-sans-pro-regular";
+    font-family: var(--source-sans-pro-regular);
     font-weight: 400;
     line-height: 1.75;
     font-size: var(--base-size);
@@ -313,4 +332,243 @@ body {
   .icon-text.active svg path{
     fill-opacity: 1;
   }
+}
+
+@layer FormDivs{
+  .FormElement {
+   margin: 3rem auto 3rem 0;
+   text-align: left;
+   color: #000000;
+
+  }
+  .FormElement textarea{
+    /* font-size: var(--h5); */
+    width: 100%;
+    resize: none;
+    outline: none;
+    overflow-y: auto;
+    padding: 2rem 0;
+    border-color: var(--gray) ;
+  }
+  .FormElement form{
+    margin-bottom: 3rem;
+  }
+  .FormElement textarea:focus{
+    outline: none;
+  }
+  .FormElement label{
+    display: block;
+    margin: 0.1rem 0;
+    /* opacity: 0.6; */
+  }
+  .FormElement input {
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+    border: 1px solid var(--gray);
+    
+  }
+  .FormElement input:focus{
+    outline: none;
+  }
+  .FormElement textarea.border-textarea{
+    border: 1px solid var(--gray-dark);
+    /* font-size: 1rem; */
+    padding: 0.5rem 0.5rem 2rem 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .btn.gen{
+    padding: 1rem 3rem;
+    margin: 0 auto;
+    background-color: var(--green-color);
+  ;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 1rem;
+
+  }
+  .btnContainer{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn svg{
+    height: 20px;
+    width: 20px;
+    stroke: var(--white);
+  }
+  .btn svg path{
+    stroke: var(--white);
+  }
+  .FormElement .form-header{
+    font-size: var(--h4);
+    /* opacity: 0.7; */
+  }
+  .FormElement .RadioButtons {
+    /* display: flex; */
+  }
+  .FormElement .RadioWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-grow: row wrap;
+    margin: 0;
+    gap: 2rem;
+  }
+  .FormElement input[type="radio"]{
+    padding: 0;
+  }
+
+.FormElement .form-control label{
+  display: inline;
+}
+.FormElement .form-control {
+  line-height: 1.1;
+  display:flex;
+  align-items: center;
+  gap:1rem;
+}
+
+
+
+
+.form-control--disabled {
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
+}
+
+input[type="checkbox"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 1rem 0;
+  padding: 0;
+  font: inherit;
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid #EAEAEA;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em gray;
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+
+
+input[type="checkbox"]:disabled {
+  --form-control-color: var(--form-control-disabled);
+
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
+}
+
+
+
+
+.tooltip {
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 2px;
+  position: relative;
+}
+.tooltip:hover {
+  cursor: help;
+}
+.tooltip-spacing {
+  height: 20px;
+  margin: 8px;
+  position: relative;
+  width: 20px;
+}
+.tooltip-bg1 {
+  background-color: transparent;
+  border-radius: 10px;
+  content: " ";
+  display: flex;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  width: 20px;
+}
+.tooltip-bg2 {
+  background-color: var(--gray-dark);
+  border: none;
+  border-radius: 8px;
+  content: " ";
+  display: flex;
+  height: 16px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  width: 16px;
+}
+.tooltip-text {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  color: var(--white);
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 0%;
+  margin-left: -80px;
+  line-height: 1;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 }

@@ -5,6 +5,7 @@
 import './App.css';
 import closeIcon from './close.svg';
 import { BackChevronSVG } from './svg';
+import RadioButton from "./components/inputs/RadioButton";
 // import styled from 'styled-components';
 
 
@@ -25,7 +26,7 @@ import { ReactComponent as Sms } from './svgicons/sms-svgrepo-com.svg';
 import { ReactComponent as Twitter } from './svgicons/twitter-svgrepo-com.svg';
 import { ReactComponent as Www } from './svgicons/www-presentation-svgrepo-com.svg';
 import { ReactComponent as Wifi } from './svgicons/wifi-good-svgrepo-com.svg';
-
+import { ReactComponent as ArrowCycle } from './svgicons/arrow-cycle-svgrepo-com.svg';
 import React, { useState, useRef, FC, Dispatch, SetStateAction, useEffect, RefObject, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
@@ -275,10 +276,6 @@ const Burger: FC<BurgerProps> = ({ open, setOpen }) => {
   );
 };
 
-
-
-
-
 const useOnClickOutside = (ref: RefObject<HTMLDivElement>, handler: (event: MouseEvent | TouchEvent) => void) => {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
@@ -299,34 +296,15 @@ const useOnClickOutside = (ref: RefObject<HTMLDivElement>, handler: (event: Mous
 };
 
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//        <nav>
-//         <ul>
-//           <li>
-//             <a href="/">
-//             <SVGComponent></SVGComponent>
-//             </a>
-//           </li>
-//           <li>
-//             <a href="/" className='btn'>sign up</a>
-//           </li>
-//         </ul>
-//        </nav>
-//       </header>
-//     </div>
-//   );
-// }
-
 function UrlForm() {
 
   return (
     <div>
       <form>
-        <input type='text' placeholder='url'></input>
-        <button>Generate</button>
+        <div>
+          <textarea placeholder='Enter your website or site' name='url-name' rows={1}></textarea>
+        </div>
+
       </form>
     </div>
   );
@@ -335,11 +313,170 @@ function TextForm() {
   return (
     <div>
       <form>
-        <textarea placeholder='text'></textarea>
-        <button>Generate</button>
+        <textarea placeholder='Enter your text'></textarea>
       </form>
     </div>
   );
+}
+
+function EmailForm() {
+  return (
+    <div>
+      <form>
+        <div>
+          <p className='form-header'>Email QR CODE</p>
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input type='email' placeholder='Enter your email' id='email' />
+        </div>
+        <div>
+          <label htmlFor="subject">Subject </label>
+          <input type='text' placeholder='Enter your subject' id="subject" />
+        </div>
+        <div>
+          <label htmlFor="msg">Message</label>
+          <textarea placeholder='Enter your message' className="border-textarea"></textarea>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function SmsForm() {
+  return (
+    <div>
+      <form>
+        <div>
+          <p className='form-header'>SMS QR CODE</p>
+        </div>
+        <div>
+          <label htmlFor="phone_number">Number</label>
+          <input type='text' placeholder='Your phone number' id='phone_number' />
+        </div>
+        <div>
+          <label htmlFor="msg">Message</label>
+          <textarea placeholder='Enter your message' className="border-textarea"></textarea>
+        </div>
+      </form>
+    </div>)
+}
+
+function WifiForm() {
+  const [selectedValue, setSelectedValue] = useState<String>("");
+
+  function radioGroupHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    setSelectedValue(event.target.value);
+  }
+
+  useEffect(() => {
+    console.log(selectedValue);
+  }, [selectedValue]);
+
+  return (
+    <div>
+      <form>
+        <div>
+          <p className='form-header'>WIFI QR CODE</p>
+        </div>
+        <div>
+          <label htmlFor="ssid">Network Name</label>
+          <input type='text' placeholder='SSID' id='ssid' />
+        </div>
+        <div>
+
+          <label className="form-control">
+            <input type="checkbox" name="checkbox" />
+            <span>Hidden
+              <div className="tooltip">
+                <span className="tooltiptext">Is this a hidden Wifi network ?</span>
+                <div className="tooltip-spacing">
+                  <div className="tooltip-bg1"></div>
+                  <div className="tooltip-bg2"></div>
+                  <div className="tooltip-text">?</div>
+
+                </div>
+
+              </div>
+            </span>
+          </label>
+
+
+        </div>
+        <div>
+          <label htmlFor="pwd">Password</label>
+          <input type='text' id='pwd' />
+        </div>
+        {/* <div className='RadioButtons'>
+          <div>
+            <label htmlFor="encryption">Encryption</label>
+          </div>
+
+          <div>
+            <input type="radio" id="none" name="encryption" value="None" />
+            <label htmlFor="none">None</label>
+          </div>
+          <div>
+            <input type="radio" id="wpa" name="encryption" value="WPA/WPA2" />
+            <label htmlFor="wpa">WPA/WPA2</label>
+          </div>
+          <div>
+            <input type="radio" id="wpe" name="encryption" value="WPE" />
+            <label htmlFor="wpe">WPE</label>
+
+          </div> */}
+        <div className='RadioButtons'>
+          <div>
+            <label htmlFor="encryption">Encryption
+
+            <div className="tooltip">
+                <span className="tooltiptext">The type of security protocol on your network</span>
+                <div className="tooltip-spacing">
+                  <div className="tooltip-bg1"></div>
+                  <div className="tooltip-bg2"></div>
+                  <div className="tooltip-text">?</div>
+
+                </div>
+
+              </div>
+
+            </label>
+          </div>
+          <div className='RadioWrapper'>
+            <RadioButton
+              value={"None"}
+              label={"None"}
+              key={"noneID"}
+              id={"noneID"}
+              name={"encryption"}
+              disabled={false}
+              defaultChecked={true}
+              onChange={radioGroupHandler}
+            />
+            <RadioButton
+              value={"WPA/WPA2"}
+              label={"WPA/WPA2"}
+              key={"WPAID"}
+              id={"WPAID"}
+              name={"encryption"}
+              disabled={false}
+              defaultChecked={false}
+              onChange={radioGroupHandler}
+            />
+            <RadioButton
+              value={"WEP"}
+              label={"WEP"}
+              key={"WEPD"}
+              id={"WEPID"}
+              name={"encryption"}
+              disabled={false}
+              defaultChecked={false}
+              onChange={radioGroupHandler}
+            />
+          </div>
+        </div>
+      </form>
+    </div>)
 }
 const App: FC = () => {
   const [open, setOpen] = useState(false);
@@ -356,6 +493,9 @@ const App: FC = () => {
   const icons: { [index: string]: JSX.Element } = {
     'WWW': UrlForm(),
     'Text': TextForm(),
+    'Email': EmailForm(),
+    'SMS': SmsForm(),
+    'Wifi': WifiForm(),
   }
   const indexIcons: { [index: number]: string } = {
     1: 'Barcode',
@@ -381,7 +521,7 @@ const App: FC = () => {
       console.log('ColorateIcon 2');
       console.log('index', index);
       // icons[index].style.color = 
-      const div_icon_text = document.getElementsByClassName('icon-text')[index-1] as HTMLElement;
+      const div_icon_text = document.getElementsByClassName('icon-text')[index - 1] as HTMLElement;
       const iconChoosed = indexIcons[index];
       setIconType(iconChoosed);
       if (!div_icon_text)
@@ -429,64 +569,71 @@ const App: FC = () => {
             <BarCode />
             <span>Barcode</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(2)}>
+          <div className='icon-text' onClick={ColorateIcon(2)}>
             <BitCoin />
             <span>Bitcoin</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(3)}>
+          <div className='icon-text' onClick={ColorateIcon(3)}>
             <Email />
             <span>Email</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(4)}>
+          <div className='icon-text' onClick={ColorateIcon(4)}>
             <Facebook />
             <span>Facebook</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(5)}>
+          <div className='icon-text' onClick={ColorateIcon(5)}>
             <File />
             <span>Text</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(6)}>
+          <div className='icon-text' onClick={ColorateIcon(6)}>
             <Card />
             <span>V-Card</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(7)}>
+          <div className='icon-text' onClick={ColorateIcon(7)}>
             <ImageIcon />
             <span>Image</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(8)}>
+          <div className='icon-text' onClick={ColorateIcon(8)}>
             <AppIcon />
             <span>App Stores</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(9)}>
+          <div className='icon-text' onClick={ColorateIcon(9)}>
             <Mp3 />
             <span>Mp3</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(10)}>
+          <div className='icon-text' onClick={ColorateIcon(10)}>
             <Pdf />
             <span>Pdf</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(11)}>
+          <div className='icon-text' onClick={ColorateIcon(11)}>
             <Sms />
             <span>SMS</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(12)}>
+          <div className='icon-text' onClick={ColorateIcon(12)}>
             <Twitter />
             <span>Twitter</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(13)}>
+          <div className='icon-text' onClick={ColorateIcon(13)}>
             <Www />
             <span>WWW</span>
           </div>
-          <div className='icon-text'  onClick={ColorateIcon(14)}>
+          <div className='icon-text' onClick={ColorateIcon(14)}>
             <Wifi />
             <span>Wifi</span>
           </div>
 
         </div>
-        <div>
+        <div className='FormElement'>
           {
-            iconsKeys.includes(icontype) && icons[icontype]
+            iconsKeys.includes(icontype) ? icons[icontype] : icons['WWW']
           }
+          <div className='btnContainer'>
+            <button className='btn gen'>
+              <ArrowCycle></ArrowCycle>
+              <span>Generate QR code</span>
+            </button>
+          </div>
+
         </div>
       </main>
     </div>

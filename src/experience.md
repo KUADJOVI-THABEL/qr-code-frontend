@@ -22,15 +22,17 @@ Sans passer par la création suplémentaires des components.
 Il s'agit d'importer les svgs comme étant des component react
 
 * On peut changer les propriétes du path d'un svg
-
+* Je pense que dans le processus de design il faut penser aux autres 
+elements une fois que l'accent est mis sur l'élement courant?
+* Pour inclure les element de font télecharcher on peut utiliser
+@font-face avec src attribute combiné avec l'url.
 
 ## thinks to work on
 * add the fivecon
 * above 303 px the design looks terrible maybe add another max-width or
 think of a smooth design there.
 * change Icons fill color on clicked to means it's choosen
-
-
+* Add a login button
 
 ## Defining Cleary 
 
@@ -72,6 +74,21 @@ and renther a specif in a function call
 I will need to add a state tracker , use state of a variable
 wish will update the selected Form
 
+Styling Check boxes and Radio buttons afraids me 
+a little that were the first time i'm doing such a thing
+
+I decided to learn more using this tuto
+https://medium.com/@christinaroise/how-to-create-a-reusable-custom-radiobutton-in-react-with-typescript-3ae7fc704e09
+
+When finishing this tuto i used their button code in this project
+
+
+Now I want to know how to include the fonts i just dowload from  the internet 
+into my project
+
+Now that's how we can style the checkboxes
+See this link
+https://moderncss.dev/pure-css-custom-checkbox-style/
 ### thinks to learn
 * Learn about the ref in React
 * Learn about the box shadow property in css
