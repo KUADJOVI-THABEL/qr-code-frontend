@@ -17,7 +17,10 @@ export const StyledRadio = styled.input`
   border: 2px solid gray;
   border-radius: 50%;
   transition: all 0.1s ease-in-out;
-
+  &:checked{
+  border: 6px solid var(--btn-primary);
+  
+  }
   &::after {
     content: "";
     display: block;
@@ -27,7 +30,7 @@ export const StyledRadio = styled.input`
   }
 
   &:checked::after {
-    
+  
   }
 
 

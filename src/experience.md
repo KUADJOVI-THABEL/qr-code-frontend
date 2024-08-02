@@ -33,6 +33,10 @@ elements une fois que l'accent est mis sur l'élement courant?
 think of a smooth design there.
 * change Icons fill color on clicked to means it's choosen
 * Add a login button
+* handle the Bitcoin form , when user click on a radio button update 
+it in the receiver form.
+
+
 
 ## Defining Cleary 
 
@@ -89,8 +93,15 @@ into my project
 Now that's how we can style the checkboxes
 See this link
 https://moderncss.dev/pure-css-custom-checkbox-style/
+
+When cliking outside of the radio button the selected option is 
+removed? why ? well the reason is the stylling of the :checked in the css
+
+
 ### thinks to learn
 * Learn about the ref in React
 * Learn about the box shadow property in css
 * Learn how to insert svg in the react 
 * Learn about svg and how to style them 
+* Learn about use call back in react
+* Learn about the box shadow property in Css

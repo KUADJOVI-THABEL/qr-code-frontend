@@ -9,13 +9,15 @@ const Wrapper = styled.div`
 `;
 
 
-const RadioButton = ({ label, id, disabled, ...rest }: InputElementProps) => (
+const RadioButton = ({ label, id,name, disabled,defaultChecked,value ,...rest }: InputElementProps) => {
+
+  return (
   <Wrapper>
-    <StyledRadio id={id} type="radio" disabled={disabled} {...rest} />
+    <StyledRadio type="radio" name={name} id={id} onChange={rest.onChange} defaultChecked={defaultChecked} value={value} />
     <StyledLabel htmlFor={id} disabled={disabled}>
       {label}
     </StyledLabel>
-  </Wrapper>
-);
+  </Wrapper>)
+};
 
 export default RadioButton;
